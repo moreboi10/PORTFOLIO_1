@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import SpecularButton from "../components/SpecularButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,38 +12,39 @@ const ShowcaseSection = () => {
   const Project2Ref = useRef(null);
   const Project3Ref = useRef(null);
 
-  
-  
   useGSAP(() => {
+    const projects = [
+      Project1Ref.current,
+      Project2Ref.current,
+      Project3Ref.current,
+    ];
 
-    const projects = [Project1Ref.current , Project2Ref.current , Project3Ref.current];
-
-  projects.forEach((card , index) => {
-    gsap.fromTo(
+    projects.forEach((card, index) => {
+      gsap.fromTo(
         card,
         {
-            y:50, opacity:0
+          y: 50,
+          opacity: 0,
         },
         {
-            y:0,
-            opacity:1,
-            duration:1,
-            delay:0.3 * (index + 1),
-            scrollTrigger:{
-                trigger:card,
-                start:'top bottom-=100'
-            }
-        }
-    )
-  })
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          delay: 0.3 * (index + 1),
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom-=100",
+          },
+        },
+      );
+    });
 
     gsap.fromTo(
-        sectionRef.current,
+      sectionRef.current,
 
-         { opacity: 0},
-         { opacity:1, duration: 1.5} 
-
-        )
+      { opacity: 0 },
+      { opacity: 1, duration: 1.5 },
+    );
   }, []);
 
   return (
@@ -55,14 +57,57 @@ const ShowcaseSection = () => {
               <img src="/images/project1.png" alt="Ryde" />
             </div>
             <div className="text-content">
-              <h2>
-                On-demand Rides Made Simple with a Powerfull , user friendly app
-                called Ryde
-              </h2>
+              <h2>Food Delivery, Built for a Seamless Experience</h2>
               <p className="text-white-50 md:text-xl">
-                an app built with react native and expo & tailwind css for fast
-                user-friendly experience.
+                A full-stack food delivery platform built with React and Spring
+                Boot, featuring secure JWT authentication, Razorpay payments,
+                role-based access, restaurant & menu management, and end-to-end
+                order tracking.
               </p>
+              <div className="flex gap-4">
+                <SpecularButton
+                size="lg"
+                radius={18}
+                tint="#ffffff"
+                tintOpacity={0}
+                blur={0}
+                textColor="#f5f5f5"
+                lineColor="#ffffff"
+                baseColor="#525252"
+                intensity={1}
+                shineSize={10}
+                shineFade={40}
+                thickness={1}
+                speed={0.35}
+                followMouse
+                proximity={250}
+                autoAnimate={false}
+                onClick={() => console.log("clicked")}
+              >
+                Open Description
+              </SpecularButton>
+              <SpecularButton
+                size="lg"
+                radius={18}
+                tint="#ffffff"
+                tintOpacity={0}
+                blur={0}
+                textColor="#f5f5f5"
+                lineColor="#ffffff"
+                baseColor="#525252"
+                intensity={1}
+                shineSize={10}
+                shineFade={40}
+                thickness={1}
+                speed={0.35}
+                followMouse
+                proximity={250}
+                autoAnimate={false}
+                onClick={() => console.log("clicked")}
+              >
+                Open App
+              </SpecularButton>
+              </div>
             </div>
           </div>
           {/* RIGHT side */}
